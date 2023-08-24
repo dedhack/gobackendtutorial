@@ -15,10 +15,10 @@ type Article struct {
 
 type Articles []Article
 
-func allArticles(w http.ResponseWriter, r *http.Request){
+func allArticles(w http.ResponseWriter, r *http.Request) {
 
 	articles := Articles{
-		Articles(Title:"")
+		Article{Title: "Test title", Desc: "Test Description", Content: "Hello world"},
 	}
 
 	fmt.Println("Endpoint Hit: All Articles Endpoint")
@@ -31,6 +31,7 @@ func homePage(w http.ResponseWriter, r *http.Request) {
 
 func handleRequests() {
 	http.HandleFunc("/", homePage)
+	http.HandleFunc("/articles", allArticles)
 	log.Fatal(http.ListenAndServe(":8081", nil))
 }
 
